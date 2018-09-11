@@ -1,0 +1,17 @@
+class Observer extends Component {
+  ...
+  componentDidMount() {
+    (window.IntersectionObserver
+      ? Promise.resolve()
+      : import('intersection-observer')
+    ).then(() => {
+      this.io = new window.IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          this.setState({ isVisible: entry.isIntersecting });
+        });
+      }, {});
+      this.io.observe(this.container);
+    });
+  }
+  ...
+}

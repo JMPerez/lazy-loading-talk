@@ -1,0 +1,18 @@
+class Observer extends Component {
+  constructor() {
+    super();
+    // isVisible is initialized to true if the browser
+    // does not support IntersectionObserver API
+    this.state = { isVisible: !(window.IntersectionObserver) };
+    this.io = null;
+    this.container = null;
+  }
+  componentDidMount() {
+    // only initialize the IntersectionObserver if supported
+    if (window.IntersectionObserver) {
+      this.io = new IntersectionObserver(entries => {
+        ...
+      }
+    }
+  }
+}

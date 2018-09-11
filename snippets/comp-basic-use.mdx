@@ -1,8 +1,15 @@
 const Page = () => {
   <div>
     <Header />
-    <Observer>{isVisible => <Gallery isVisible />}</Observer>
-    <Observer>{isVisible => <Map isVisible />}</Observer>
+
+    <Observer>
+      {isVisible => <Gallery isVisible />}
+    </Observer>
+
+    <Observer>
+      {isVisible => <Map isVisible />}
+    </Observer>
+
     <Footer />
   </div>;
 };

@@ -1,0 +1,15 @@
+const Page = () => {
+  ...
+
+  // Observer calls its children with
+  // isVisible and hasBeenVisible
+
+  <Observer>
+    {(isVisible, hasBeenVisible) =>
+      // Map can be now stateless
+      <Map hasBeenVisible />
+    }
+  </Observer>
+
+  ...
+}
