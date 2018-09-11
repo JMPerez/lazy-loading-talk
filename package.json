@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "mdx-deck build deck.mdx --no-html",
+    "pdf": "mdx-deck pdf deck.mdx",
     "start": "mdx-deck deck.mdx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
