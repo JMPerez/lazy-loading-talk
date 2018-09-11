@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "mdx-deck build deck.mdx --no-html",
+    "build": "npm run static && mdx-deck build deck.mdx --no-html",
     "pdf": "mdx-deck pdf deck.mdx",
+    "static": "mkdir -p dist/assets && cp -R assets dist/",
     "start": "mdx-deck deck.mdx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +17,6 @@
     "mdx-deck": "^1.7.3",
     "mdx-deck-code-surfer": "^0.4.1",
     "raw-loader": "^0.5.1"
-  }
+  },
+  "dependencies": {}
 }
