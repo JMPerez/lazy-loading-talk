@@ -1,8 +1,13 @@
 import { CodeSurfer } from 'mdx-deck-code-surfer'
 export { future as theme } from 'mdx-deck/themes'
 import { Split } from 'mdx-deck/layouts'
-import { Appear, Image } from 'mdx-deck'
+import { Appear, Image, Head } from 'mdx-deck'
 import nightOwl from "prism-react-renderer/themes/nightOwl"
+
+<Head>
+  <title>Better Performance with Lazy-Loading and Code-Splitting</title>
+  <meta name='twitter:description' content='A presentation on creating React-like components to speed-up rendering' />
+</Head>
 
 # Better Performance with Lazy-Loading and Code-Splitting
 
@@ -34,7 +39,11 @@ Stockholm ReactJS Meetup - September 2018
 ---
 export default Split
 
-![](assets/site.png)
+<Image
+  src='assets/site.png'
+  size='contain'
+  width='100'
+/>
 
 ```jsx
 const Page = () => {
@@ -97,9 +106,14 @@ Invisible content in some scenarios
 
 ---
 <CodeSurfer
-  title="Our Component"
+  title="Our Component ⬇️"
   theme={nightOwl}
   code={require("!raw-loader!./snippets/comp-basic.mdx")}
+  steps={[
+    { ranges: [[6, 6], [24, 28], [32,32]]},
+    { ranges: [[4, 4], [9, 12], [29, 31]]},
+    { ranges: [[14, 18]]},
+  ]}
   />
 ---
 <CodeSurfer
@@ -109,17 +123,26 @@ Invisible content in some scenarios
   />
 ---
 <CodeSurfer
-  title="Stateless Child Component"
+  title="Stateless Child Component ⬇️"
   theme={nightOwl}
   code={require("!raw-loader!./snippets/gallery-stateless.mdx")}
+  steps={[
+    { ranges: [[1, 1], [5, 9]], notes: "Using isVisible ➡️️" }
+  ]}
   />
+---
+TIP 
+💡 : make sure that you reserve the area for the lazy-loaded component
 ---
 <CodeSurfer
+  title="Stateful Child Component ⬇️"
   theme={nightOwl}
   code={require("!raw-loader!./snippets/map.mdx")}
+  steps={[
+    { ranges: [[30, 38]]},
+    { ranges: [[8, 28]]}
+  ]}
   />
----
-TIP: make sure that you reserve the area for the lazy-loaded component
 ---
 <CodeSurfer
   title="Moving state to the Observer component"
@@ -129,23 +152,33 @@ TIP: make sure that you reserve the area for the lazy-loaded component
 ---
 ## More use cases
 ---
+<video controls src="https://res.cloudinary.com/jmperez/video/upload/dpr_auto,f_auto,q_auto/v1522995652/observer/react-alicante.mp4" width="1064" height="618"></video>
+---
 <CodeSurfer
   theme={nightOwl}
   code={require("!raw-loader!./snippets/conference-data.mdx")}
+  steps={[
+    { ranges: [[9, 21]] }
+  ]}
   />
 ---
 ## Polyfilling IntersectionObserver on-demand
 ---
 <CodeSurfer
-  title="Disabling lazy-loading if IntersectionObserver is not supported"
+  title="Disabling lazy-loading if IO is not supported"
   theme={nightOwl}
   code={require("!raw-loader!./snippets/disable-lazy-loading.mdx")}
-  />
+  steps={[
+    { ranges: [[6, 6], [12, 12]] }
+  ]}/>
 ---
 <CodeSurfer
   title="Requesting a polyfill on demand"
   theme={nightOwl}
-  code={require("!raw-loader!./snippets/disable-lazy-loading.mdx")}
+  code={require("!raw-loader!./snippets/polyfill-on-demand.mdx")}
+  steps={[
+    { ranges: [[4, 8]] }
+  ]}/>
   />
 ---
 
@@ -156,10 +189,14 @@ Safari requests the polyfill for intersection-observer on demand.
  No need to ship it to browsers that support it natively.
 
 ---
-## Code Splitting and CSS-in-JS
-- react-router and Next.js have made code-splitting easy to implement
-- lazy-loading can be applied to other resources (SVGs, CSS)
-- With CSS-in-JS we take code splitting further, loading CSS on demand.
+## Code Splitting, CSS-in-JS & more
+<ul>
+<Appear>
+<li>react-router and Next.js have made code-splitting easy to implement</li>
+<li>lazy-loading can be applied to other resources (SVGs, CSS)</li>
+<li>With CSS-in-JS we take code splitting further, loading CSS on demand</li>
+</Appear>
+</ul>
 ---
 ## Useful implementations
 - [thebuilder/react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)
@@ -171,5 +208,5 @@ Componentization makes code-splitting and loading assets on-demand easier than e
 ## Buzz words → Useful tools
 ES6 + CSS-in-JS + bundlers = High Performance Sites
 ---
-## Interested in joining Spotify?
-We love web development! Talk with me about open positions
+## Thanks!
+[@jmperezperez](https://twitter.com/jmperezperez) / [jmperezperez.com](https://jmperezperez.com)
