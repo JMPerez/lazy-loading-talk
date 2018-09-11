@@ -1,0 +1,12 @@
+const MyComponent = props => (
+  <div>
+    {props.id} - {props.name}
+  </div>
+);
+
+// ...
+
+const ConnectedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyComponent);

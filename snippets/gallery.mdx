@@ -1,0 +1,35 @@
+class Gallery extends Component {
+  constructor() {
+    super();
+    this.state = { hasBeenVisible: false };
+  }
+  componentDidMount() {
+    if (this.props.isVisible) {
+      this.setState({ hasBeenVisible: true });
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (!this.state.hasBeenVisible && nextProps.isVisible) {
+      this.setState({ hasBeenVisible: true });
+    }
+  }
+  render() {
+    return (
+      <div>
+        <h1>Some pictures</h1>
+        Picture 1
+        {this.state.hasBeenVisible ? (
+          <img src="http://example.com/image01.jpg" width="300" height="300" />
+        ) : (
+          <div className="placeholder" />
+        )}
+        Picture 2
+        {this.state.hasBeenVisible ? (
+          <img src="http://example.com/image02.jpg" width="300" height="300" />
+        ) : (
+          <div className="placeholder" />
+        )}
+      </div>
+    );
+  }
+}

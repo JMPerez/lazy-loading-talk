@@ -1,0 +1,35 @@
+class Observer extends Component {
+  constructor() {
+    super();
+    this.state = { isVisible: false };
+    this.io = null;
+    this.container = null;
+  }
+  componentDidMount() {
+    this.io = new IntersectionObserver([entry] => {
+      this.setState({ isVisible: entry.isIntersecting });
+    }, {});
+    this.io.observe(this.container);
+  }
+  componentWillUnmount() {
+    if (this.io) {
+      this.io.disconnect();
+    }
+  }
+  render() {
+    return (
+      // we create a div to get a reference.
+      // It's possible to use findDOMNode() to avoid
+      // creating extra elements, but findDOMNode is discouraged
+      <div
+        ref={div => {
+          this.container = div;
+        }}
+      >
+        {Array.isArray(this.props.children)
+          ? this.props.children.map(child => child(this.state.isVisible))
+          : this.props.children(this.state.isVisible)}
+      </div>
+    );
+  }
+}

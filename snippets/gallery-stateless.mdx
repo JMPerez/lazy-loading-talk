@@ -1,0 +1,17 @@
+const Gallery = ({ isVisible }) => (
+  <div>
+    <h1>Some pictures</h1>
+    Picture 1
+    {isVisible ? (
+      <img src="http://example.com/image01.jpg" width="300" height="300" />
+    ) : (
+      <div className="placeholder" />
+    )}
+    Picture 2
+    {isVisible ? (
+      <img src="http://example.com/image02.jpg" width="300" height="300" />
+    ) : (
+      <div className="placeholder" />
+    )}
+  </div>
+);
