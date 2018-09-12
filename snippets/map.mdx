@@ -21,8 +21,8 @@ class Map extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.state.initialized && nextProps.isVisible) {
+  componentDidUpdate(prevProps) {
+    if (!this.state.initialized && prevProps.isVisible) {
       this.initializeMap();
     }
   }

@@ -8,10 +8,11 @@ class Gallery extends Component {
       this.setState({ hasBeenVisible: true });
     }
   }
-  componentWillReceiveProps(nextProps) {
-    if (!this.state.hasBeenVisible && nextProps.isVisible) {
-      this.setState({ hasBeenVisible: true });
+  getDerivedStateFromProps(props, state) {
+    if (props.isVisible && !state.hasBeenVisible) {
+      return { hasBeenVisible: true };
     }
+    return null;
   }
   render() {
     return (
